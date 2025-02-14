@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -69,26 +71,8 @@ class DetailEventActivity : AppCompatActivity() {
             tvEventOwner.text = "Diselenggarakan oleh: ${event.ownerName}"
             tvEventTime.text = "Waktu: ${event.beginTime}"
             tvEventQuota.text = "Sisa Kuota: ${(event.quota ?: 0) - (event.registrants ?: 0)}"
-            val htmlContent = """
-                <html>
-                <head>
-                    <style>
-                        img {
-                            max-width: 100%;
-                            height: auto;
-                            display: block;
-                            margin: 0 auto;
-                        }
-                    </style>
-                </head>
-                <body>
-                    ${event.description}
-                </body>
-                </html>
-            """.trimIndent()
 
-            binding.wvEventDescription.settings.javaScriptEnabled = true
-            binding.wvEventDescription.loadData(htmlContent, "text/html", "UTF-8")
+            tvEventDescription.text = Html.fromHtml(event.description, Html.FROM_HTML_MODE_LEGACY)
 
             btnEventLink.setOnClickListener {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(event.link))
