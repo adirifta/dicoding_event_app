@@ -10,7 +10,11 @@ import com.adicoding.dicodingeventapp.R
 import com.adicoding.dicodingeventapp.data.response.ListEventsItem
 import com.bumptech.glide.Glide
 
-class EventAdapter(private val listEvent: List<ListEventsItem>) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {
+class EventAdapter(
+    private val listEvent: List<ListEventsItem>,
+    private val onItemClick: (ListEventsItem) -> Unit
+) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_event, parent, false)
@@ -20,6 +24,7 @@ class EventAdapter(private val listEvent: List<ListEventsItem>) : RecyclerView.A
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val event = listEvent[position]
         holder.bind(event)
+        holder.itemView.setOnClickListener { onItemClick(event) }
     }
 
     override fun getItemCount(): Int = listEvent.size

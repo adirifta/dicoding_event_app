@@ -1,8 +1,7 @@
-import org.gradle.api.internal.DocumentationRegistry.BASE_URL
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -12,6 +11,7 @@ android {
     defaultConfig {
         applicationId = "com.adicoding.dicodingeventapp"
         minSdk = 27
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -63,4 +63,5 @@ dependencies {
     implementation (libs.logging.interceptor)
 
     implementation(libs.glide)
+    implementation (libs.androidx.cardview)
 }

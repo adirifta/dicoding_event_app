@@ -1,4 +1,4 @@
-package com.adicoding.dicodingeventapp.ui.splashscreen
+package com.adicoding.dicodingeventapp.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import com.adicoding.dicodingeventapp.MainActivity
 import com.adicoding.dicodingeventapp.R
 
 @SuppressLint("CustomSplashScreen")
